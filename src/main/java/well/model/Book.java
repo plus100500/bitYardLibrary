@@ -1,12 +1,13 @@
 package well.model;
 
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "library")
 public class Book {
-    private int id;
+    private Integer id;
     private String title;
     private String description;
     private String author;

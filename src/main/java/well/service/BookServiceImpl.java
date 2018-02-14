@@ -1,5 +1,6 @@
 package well.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import well.dao.BookDao;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+
     private BookDao bookDao;
 
     public void setBookDao(BookDao bookDao) {
