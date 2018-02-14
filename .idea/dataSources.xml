@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="welldb" uuid="78793bdd-e26d-42e7-95d9-c2a44584c136">
+    <data-source source="LOCAL" name="test" uuid="78793bdd-e26d-42e7-95d9-c2a44584c136">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

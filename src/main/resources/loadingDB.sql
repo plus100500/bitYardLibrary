@@ -1,3 +1,4 @@
+use test;
 insert into library (title, description, author, isbn, printYear, readAlready) values ('Title1', 'Description1', 'Author1', '0000000000001', '2011', false);
 insert into library (title, description, author, isbn, printYear, readAlready) values ('Title2', 'Description2', 'Author2', '0000000000002', '2014', false);
 insert into library (title, description, author, isbn, printYear, readAlready) values ('Title3', 'Description3', 'Author1', '0000000000003', '2013', false);

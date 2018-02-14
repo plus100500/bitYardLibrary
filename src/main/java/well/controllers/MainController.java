@@ -1,7 +1,6 @@
 package well.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,13 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import well.model.Book;
 import well.service.BookService;
 
+import java.util.Objects;
+
+import static java.util.Objects.isNull;
+
 
 @Controller
 public class MainController {
     private BookService bookService;
 
     @Autowired
-    @Qualifier(value = "bookService")
     public void setBookService(BookService bookService) {
         this.bookService = bookService;
     }
@@ -33,7 +35,9 @@ public class MainController {
     public String getBookById(@PathVariable("id") int id, Model model) {
         Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
-        if (!book.getReadAlready()) book.setReadAlready(true);
+        if (!book.getReadAlready()) {
+            book.setReadAlready(true);
+        }
         bookService.updateBook(book);
         return "bookInfo";
     }
@@ -54,9 +58,11 @@ public class MainController {
 
     @RequestMapping(value = "/books/add", method = RequestMethod.POST)
     public String addBook(@ModelAttribute("newBook") Book book){
-        if (book.getAuthor() == "") return "redirect:/books";
+        if (Objects.equals(book.getAuthor(), "")) {
+            return "redirect:/books";
+        }
         book.setReadAlready(false);
-        if(book.getId() == 0){
+        if (isNull(book.getId()) || book.getId() == 0) {
             bookService.addBook(book);
         }else {
             bookService.updateBook(book);

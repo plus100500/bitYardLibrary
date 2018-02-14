@@ -1,4 +1,7 @@
-CREATE TABLE IF NOT EXISTS test.library (
+USE test;
+DROP TABLE IF EXISTS library;
+
+CREATE TABLE test.library (
   id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(100),
   description VARCHAR(255),

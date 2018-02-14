@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "library")
+@Access(AccessType.PROPERTY)
 public class Book {
     private Integer id;
     private String title;
@@ -16,12 +17,13 @@ public class Book {
     private Boolean readAlready;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -90,19 +92,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id == book.id &&
-                Objects.equals(title, book.title) &&
-                Objects.equals(description, book.description) &&
-                Objects.equals(author, book.author) &&
-                Objects.equals(isbn, book.isbn) &&
-                Objects.equals(printYear, book.printYear) &&
-                Objects.equals(readAlready, book.readAlready);
+        return Objects.equals(id, book.id);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, title, description, author, isbn, printYear, readAlready);
+        return Objects.hash(id);
     }
 
     @Override
