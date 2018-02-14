@@ -8,12 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import well.model.Book;
 
 import java.util.List;
 
-@Repository
+//@Repository
+@Service
 public class BookDaoImpl implements BookDao {
 
     private SessionFactory sessionFactory;
@@ -23,9 +25,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     private static final Logger logger = LoggerFactory.getLogger(BookDaoImpl.class);
-    private static Session session = BookSessionFactory.getSession();
+//    private static Session session = BookSessionFactory.getSession();
+    private Session session = sessionFactory.getCurrentSession();
 
     public void addBook(Book book) {
+
         Transaction tx = session.beginTransaction();
         session.persist(book);
         tx.commit();

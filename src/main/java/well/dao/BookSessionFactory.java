@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public class BookSessionFactory {
 
     @Autowired

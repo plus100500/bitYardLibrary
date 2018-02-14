@@ -45,11 +45,6 @@
         <!--</property>-->
     <!--</bean>-->
 
-
-    <bean id="sessionFactory" class="well.dao.BookSessionFactory">
-        <!--<property name="annotatedPackages" value="well.model"/>-->
-    </bean>
-
     <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
           <!--destroy-method="close">-->
         <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
@@ -71,20 +66,23 @@
     <!--</bean>-->
 
 
-    <!--<bean id="bookDao" class="well.dao.BookDaoImpl">-->
-        <!--<property name="sessionFactory" ref="hibernate"/>-->
-    <!--</bean>-->
+    <bean id="sessionFactory" class="well.dao.BookSessionFactory"/>
 
-    <!--<bean id="bookService" class="well.service.BookServiceImpl">-->
-        <!--<property name="bookDao" ref="bookDao"/>-->
-    <!--</bean>-->
+    <bean id="bookDao" class="well.dao.BookDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="bookService" class="well.service.BookServiceImpl">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 
     <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" p:sessionFactory-ref = "sessionFactory"/>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory"/>
 
 
 </beans>
